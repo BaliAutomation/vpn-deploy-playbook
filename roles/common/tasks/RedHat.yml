@@ -24,7 +24,7 @@
     - vcs
 
 - name: install common python packages
-  action: yum pkg={{ item }} state=installed
+  yum: name={{ item }} state=installed
   with_items:
     - python-setuptools
     - python-pip
