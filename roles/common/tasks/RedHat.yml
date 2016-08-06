@@ -3,7 +3,7 @@
 
 - name: install editor
   become: yes
-  action: yum pkg={{ item }} state=installed
+  yum: name={{ item }} state=installed
   with_items:
     - vim
   tags:
@@ -12,7 +12,7 @@
 
 - name: install version control tools
   become: yes
-  action: yum pkg={{ item }} state=installed
+  yum: name={{ item }} state=installed
   with_items:
     - git
   tags:
@@ -34,7 +34,7 @@
 
 - name: install supervisor
   become: yes
-  yum: pkg={{ item }} state=installed
+  yum: name={{ item }} state=installed
   with_items:
     - supervisor
   tags:
