@@ -1,14 +1,14 @@
 ---
 #install common packages
 
-- name: update apt cache
-  action: apt update_cache=yes cache_valid_time=3600
+- name: update yum cache
+  action: yum update_cache=yes cache_valid_time=3600
   tags:
     - common
     - update
 
 - name: install editor
-  action: apt pkg={{ item }} state=installed
+  action: yum pkg={{ item }} state=installed
   with_items:
     - vim
   tags:
@@ -16,7 +16,7 @@
     - editor
 
 - name: install version control tools
-  action: apt pkg={{ item }} state=installed
+  action: yum pkg={{ item }} state=installed
   with_items:
     - git
   tags:
@@ -24,7 +24,7 @@
     - vcs
 
 - name: install common python packages
-  action: apt pkg={{ item }} state=installed
+  action: yum pkg={{ item }} state=installed
   with_items:
     - python-setuptools
     - python-pip
@@ -36,7 +36,7 @@
 
 
 - name: install supervisor
-  action: apt pkg={{ item }} state=installed
+  action: yum pkg={{ item }} state=installed
   with_items:
     - supervisor
   tags:
