@@ -4,6 +4,11 @@
 
 - name: install openvpn
   action: apt package=openvpn state=present
+  when: ansible_os_family == "Debian"
+
+- name: install openvpn
+  action: yum package=openvpn state=present
+  when: ansible_os_family == "RedHat"
 
 - name: upload vars file
   action: /usr/share/doc/openvpn/examples/easy-rsa/2.0

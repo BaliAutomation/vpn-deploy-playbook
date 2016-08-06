@@ -3,10 +3,22 @@
 - name: install mysql-server
   apt: pkg=mysql-server state=installed
   tags: mysql 
+  when: ansible_os_family == "Debian"
 
 - name: install python-mysqldb
   apt: pkg=python-mysqldb state=installed
   tags: mysql 
+  when: ansible_os_family == "Debian"
+
+- name: install mysql-server
+  yum: pkg=mysql-server state=installed
+  tags: mysql
+  when: ansible_os_family == "RedHat"
+
+- name: install python-mysqldb
+  yum: pkg=python-mysqldb state=installed
+  tags: mysql
+  when: ansible_os_family == "RedHat"
 
 - name: start mysql
   service: name=mysql state=started

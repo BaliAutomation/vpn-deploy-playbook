@@ -4,6 +4,13 @@
   apt: pkg=polipo state=installed
   tags:
     - polipo
+  when: ansible_os_family == "Debian"
+
+- name: install polipo
+  yum: pkg=polipo state=installed
+  tags:
+    - polipo
+  when: ansible_os_family == "RedHat"
 
 - name: upload config
   template: src=polipo.config dest=/etc/polipo/config

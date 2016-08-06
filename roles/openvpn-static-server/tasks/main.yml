@@ -5,8 +5,15 @@
   action: apt package=openvpn state=present
   tags:
     - openvpn-static-server
+  when: ansible_os_family == "Debian"
 
-- name: ensure log dir exists 
+- name: install openvpn
+  action: yum package=openvpn state=present
+  tags:
+    - openvpn-static-server
+  when: ansible_os_family == "RedHat"
+
+- name: ensure log dir exists
   file: path=/var/log/openvpn state=directory mode=755
 
 - name: upload server config files

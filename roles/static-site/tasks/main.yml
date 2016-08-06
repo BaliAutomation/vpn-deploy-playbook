@@ -5,6 +5,14 @@
   tags:
     - nginx
     - static-site
+  when: ansible_os_family == "Debian"
+
+- name: install nginx
+  yum: pkg=nginx state=installed
+  tags:
+    - nginx
+    - static-site
+  when: ansible_os_family == "RedHat"
 
 - name: upload cert for ssl site
   copy: src={{ nginx_site_cert }}

@@ -20,6 +20,24 @@
     - libevent-dev
   tags:
     - spdy-proxy
+  when: ansible_os_family == "Debian"
+
+- name: install spdylay depdency
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - autoconf
+    - automake
+    - autotools-dev
+    - libtool
+    - pkg-config
+    - zlib1g-dev
+    - libcunit1-dev
+    - libssl-dev
+    - libxml2-dev
+    - libevent-dev
+  tags:
+    - spdy-proxy
+  when: ansible_os_family == "RedHat"
 
 - name: clone spdylay repo
   git: repo=https://github.com/tatsuhiro-t/spdylay.git dest=/opt/spdylay

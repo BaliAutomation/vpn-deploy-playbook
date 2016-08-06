@@ -3,4 +3,11 @@
   apt: pkg={{ item }} state=installed
   with_items:
     - strongswan
+  when: ansible_os_family == "Debian"
+
+- name: Enforce strongswan is installed
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - strongswan
+  when: ansible_os_family == "RedHat"
 

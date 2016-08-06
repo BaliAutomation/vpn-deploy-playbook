@@ -5,6 +5,14 @@
   with_items:
     - python-gevent
     - python-m2crypto
+  when: ansible_os_family == "Debian"
+
+- name: install gevent M2Crypto
+  yum: pkg={{ item }} state=present
+  with_items:
+    - python-gevent
+    - python-m2crypto
+  when: ansible_os_family == "RedHat"
 
 - name: install python version shadowsocks
   pip: name=shadowsocks state=present

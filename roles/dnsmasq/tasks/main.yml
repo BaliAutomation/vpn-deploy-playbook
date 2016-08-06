@@ -4,6 +4,13 @@
   apt: pkg=dnsmasq state=installed
   tags:
     - dns
+  when: ansible_os_family == "Debian"
+
+- name: install dnsmasq
+  yum: pkg=dnsmasq state=installed
+  tags:
+    - dns
+  when: ansible_os_family == "RedHat"
 
 - name: ensure config directory exists
   file: path=/etc/dnsmasq.d/ state=directory

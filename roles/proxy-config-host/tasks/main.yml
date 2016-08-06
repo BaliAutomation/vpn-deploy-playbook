@@ -4,6 +4,13 @@
   apt: pkg=nginx state=present
   tags:
     - pch
+  when: ansible_os_family == "Debian"
+
+- name: install nginx
+  yum: pkg=nginx state=present
+  tags:
+    - pch
+  when: ansible_os_family == "RedHat"
 
 - name: enable nginx
   service: name=nginx enabled=true

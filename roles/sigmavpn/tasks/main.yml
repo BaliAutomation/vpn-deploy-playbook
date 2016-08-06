@@ -5,6 +5,14 @@
   tags:
     - sigmavpn
     - install
+  when: ansible_os_family == "Debian"
+
+- name: install build-essential
+  yum: pkg=build-essential state=installed
+  tags:
+    - sigmavpn
+    - install
+  when: ansible_os_family == "RedHat"
 
 - name: download src package
   get_url: url=https://github.com/neilalexander/sigmavpn/archive/{{ sigmavpn_version }}.tar.gz

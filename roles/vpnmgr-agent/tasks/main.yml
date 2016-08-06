@@ -3,6 +3,11 @@
 
 - name: install header file
   apt: pkg=python-dev state=present
+  when: ansible_os_family == "Debian"
+
+- name: install header file
+  yum: pkg=python-dev state=present
+  when: ansible_os_family == "RedHat"
 
 - name: ensure directory used by vpn-mgr exists
   file: path={{ item }} state=directory

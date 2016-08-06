@@ -2,6 +2,11 @@
 
 - name: install squid
   apt: pkg=squid3 state=installed
+  when: ansible_os_family == "Debian"
+
+- name: install squid
+  yum: pkg=squid3 state=installed
+  when: ansible_os_family == "RedHat"
 
 - name: enable squid
   service: name=squid3 enabled=yes

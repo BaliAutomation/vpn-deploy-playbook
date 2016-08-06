@@ -31,7 +31,19 @@
     - autoconf
     - automake
     - libtool
-  when: bin.stat.exists == False
+  when: bin.stat.exists == False && ansible_os_family == 'Debian'
+  tags:
+    - chinadns
+    - buildessential
+
+- name: install build essential
+  yum: pkg={{ item }} state=present
+  with_items:
+    - build-essential
+    - autoconf
+    - automake
+    - libtool
+  when: bin.stat.exists == False && ansible_os_family == 'RedHat'
   tags:
     - chinadns
     - buildessential

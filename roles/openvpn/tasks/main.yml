@@ -5,8 +5,15 @@
   action: apt package=openvpn state=present
   tags:
     - openvpn
+  when: ansible_os_family == "Debian"
 
-- name: ensure log dir exists 
+- name: install openvpn
+  action: yum package=openvpn state=present
+  tags:
+    - openvpn
+  when: ansible_os_family == "RedHat"
+
+- name: ensure log dir exists
   file: path=/var/log/openvpn state=directory
   tags:
     - openvpn
@@ -25,6 +32,13 @@
   action: apt package=openvpn-auth-radius state=present
   tags:
     - openvpn
+  when: ansible_os_family == "Debian"
+
+- name: install openvpn
+  action: yum package=openvpn-auth-radius state=present
+  tags:
+    - openvpn
+  when: ansible_os_family == "RedHat"
 
 - name: upload radiusplugin config file
   action: template src=etc/openvpn/radiusplugin.cnf dest=/etc/openvpn/radiusplugin-{{ item.name }}.cnf

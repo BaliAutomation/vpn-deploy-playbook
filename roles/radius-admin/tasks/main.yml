@@ -3,6 +3,11 @@
 
 - name: install system wide dependency 
   apt: name=libmysqlclient-dev state=present
+  when: ansible_os_family == "Debian"
+
+- name: install system wide dependency
+  yum: name=libmysqlclient-dev state=present
+  when: ansible_os_family == "RedHat"
 
 - name: create djra database
   action: mysql_db name={{ djra_db_name }} collation=utf8_general_ci encoding=utf8 

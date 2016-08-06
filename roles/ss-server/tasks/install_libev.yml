@@ -2,16 +2,25 @@
   apt_key: url='{{ shadowsocks_libev_repo_key }}' state=present
   tags:
     - ss-server
+  when: ansible_os_family == "Debian"
 
 - name: add shadowsocks repo
   apt_repository: repo='{{ shadowsocks_libev_repo_url }}' state=present
   tags:
     - ss-server
+  when: ansible_os_family == "Debian"
 
 - name: install shadowsocks libev
   apt: pkg=shadowsocks-libev state=installed force=yes
   tags:
     - ss-server
+  when: ansible_os_family == "Debian"
+
+- name: install shadowsocks libev
+  yum: pkg=shadowsocks-libev state=installed force=yes
+  tags:
+    - ss-server
+  when: ansible_os_family == "RedHat"
 
 - name: make a symbol link to /opt/ss-server/
   file: src=/usr/bin/ss-server dest=/opt/ss-server/ss-server state=link

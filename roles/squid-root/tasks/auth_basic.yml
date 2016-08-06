@@ -1,6 +1,11 @@
 ---
 - name: install passlib
   apt: pkg=python-passlib state=installed
+  when: ansible_os_family == "Debian"
+
+- name: install passlib
+  yum: pkg=python-passlib state=installed
+  when: ansible_os_family == "RedHat"
 
 - name: update passwd file
   htpasswd: path="{{ squid_passwd_file }}"

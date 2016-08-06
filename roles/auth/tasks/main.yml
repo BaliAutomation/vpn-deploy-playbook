@@ -8,6 +8,16 @@
     - freeradius-mysql
     - freeradius-utils
   tags: freeradius 
+  when: ansible_os_family == 'Debian'
+
+- name: install freeradius
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - freeradius
+    - freeradius-mysql
+    - freeradius-utils
+  tags: freeradius
+  when: ansible_os_family == 'RedHat'
 
 - name: create freeradius database
   mysql_db: name={{ freeradius_db_name }} collation=utf8_general_ci encoding=utf8 

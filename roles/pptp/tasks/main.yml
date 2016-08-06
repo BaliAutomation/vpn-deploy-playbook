@@ -5,6 +5,12 @@
 - name:  Enforce pptpd is installed
   action: apt pkg=pptpd state=installed
   tags: pptp
+  when: ansible_os_family == "Debian"
+
+- name:  Enforce pptpd is installed
+  action: yum pkg=pptpd state=installed
+  tags: pptp
+  when: ansible_os_family == "RedHat"
 
 - name:  Upload pptpd config file
   action: template src=etc/{{ item }}

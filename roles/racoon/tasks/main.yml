@@ -4,11 +4,25 @@
   apt: pkg=racoon state=present
   tags:
     - ipsec
+  when: ansible_os_family == "Debian"
+
+- name: install racoon
+  yum: pkg=racoon state=present
+  tags:
+    - ipsec
+  when: ansible_os_family == "RedHat"
 
 - name: install libpam-radius-auth
   apt: pkg=libpam-radius-auth state=present
   tags:
     - ipsec
+  when: ansible_os_family == "Debian"
+
+- name: install libpam-radius-auth
+  yum: pkg=libpam-radius-auth state=present
+  tags:
+    - ipsec
+  when: ansible_os_family == "RedHat"
 
 - name: install racoon config files
   template: src="{{ item }}" dest=/etc/"{{ item }}" backup=yes

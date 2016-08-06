@@ -4,6 +4,13 @@
   apt: pkg=libpam-radius-auth  state=present
   tags:
     - ocserv
+  when: ansible_os_family == "Debian"
+
+- name: install pam & radius
+  yum: pkg=libpam-radius-auth  state=present
+  tags:
+    - ocserv
+  when: ansible_os_family == "RedHat"
 
 - name: install pam config files
   template: src="{{ item }}" dest="/etc/{{ item }}" backup=yes

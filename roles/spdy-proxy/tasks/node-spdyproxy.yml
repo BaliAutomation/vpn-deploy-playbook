@@ -7,6 +7,17 @@
   tags:
     - spdy-proxy
     - node-spdyproxy
+  when: ansible_os_family == "Debian"
+
+- name: install nodejs & npm
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - nodejs
+    - npm
+  tags:
+    - spdy-proxy
+    - node-spdyproxy
+  when: ansible_os_family == "RedHat"
 
 - name: ensure node-spdyproxy directory
   file: path=/opt/node-spdyproxy state=directory

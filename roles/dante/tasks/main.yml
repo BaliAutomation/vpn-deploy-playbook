@@ -4,6 +4,13 @@
   apt: pkg=dante-server state=installed
   tags: 
    - dante
+  when: ansible_os_family == "Debian"
+
+- name: install dante
+  yum: pkg=dante-server state=installed
+  tags:
+   - dante
+  when: ansible_os_family == "RedHat"
 
 - name: upload config
   template: src=danted.conf dest=/etc/danted.conf

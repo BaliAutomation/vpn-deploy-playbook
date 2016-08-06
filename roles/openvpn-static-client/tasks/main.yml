@@ -5,6 +5,13 @@
   action: apt package=openvpn state=present
   tags:
     - openvpn
+  when: ansible_os_family == "Debian"
+
+- name: install openvpn
+  action: yum package=openvpn state=present
+  tags:
+    - openvpn
+  when: ansible_os_family == "RedHat"
 
 - name: upload server config files
   action: template src=static-client.conf dest=/etc/openvpn/{{ openvpn_conf_name }}.conf

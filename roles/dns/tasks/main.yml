@@ -5,6 +5,13 @@
   apt: pkg=dnsmasq state=installed
   tags:
     - dns
+  when: ansible_os_family == "Debian"
+
+- name: install dnsmasq
+  yum: pkg=dnsmasq state=installed
+  tags:
+    - dns
+  when: ansible_os_family == "RedHat"
 
 - name: remove dnsmasq from resolveconf
   lineinfile: dest=/etc/init.d/dnsmasq 

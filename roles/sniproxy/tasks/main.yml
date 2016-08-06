@@ -14,6 +14,22 @@
     - libpcre3-dev 
     - libudns-dev 
     - pkg-config
+  when: ansible_os_family == "Debian"
+
+- name: install dep
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - autotools-dev
+    - cdbs
+    - debhelper
+    - dh-autoreconf
+    - dpkg-dev
+    - gettext
+    - libev-dev
+    - libpcre3-dev
+    - libudns-dev
+    - pkg-config
+  when: ansible_os_family == "RedHat"
 
 - name: clone sniproxy
   git: repo={{ sniproxy_repo }}
