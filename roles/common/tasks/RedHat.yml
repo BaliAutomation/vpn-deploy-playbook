@@ -1,11 +1,11 @@
 ---
 #install common packages
 
-- name: update yum cache
-  action: yum update_cache=yes cache_valid_time=3600
-  tags:
-    - common
-    - update
+#- name: update yum cache
+#  action: yum update_cache=yes cache_valid_time=3600
+#  tags:
+#    - common
+#    - update
 
 - name: install editor
   action: yum pkg={{ item }} state=installed
