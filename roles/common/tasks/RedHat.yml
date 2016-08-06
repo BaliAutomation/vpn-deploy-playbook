@@ -28,7 +28,7 @@
   with_items:
     - python-setuptools
     - python-pip
-    - python-dev
+    - python-devel
     - python-pycurl
   tags:
     - common
