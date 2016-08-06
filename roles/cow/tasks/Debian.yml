@@ -2,6 +2,7 @@
 # install & config cow server
 
 - name: install common python packages
+  become: yes
   action: apt pkg={{ item }} state=installed
   with_items:
     - python-setuptools
@@ -12,6 +13,7 @@
 
 
 - name: install supervisor
+  become: yes
   action: apt pkg={{ item }} state=installed
   with_items:
     - supervisor
@@ -21,6 +23,7 @@
     - supervisor
 
 - name: install curl
+  become: yes
   action: apt pkg=curl state=installed
   tags:
     - cow

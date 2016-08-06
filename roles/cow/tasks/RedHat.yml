@@ -2,6 +2,7 @@
 # install & config cow server
 
 - name: install common python packages
+  become: yes
   action: yum pkg={{ item }} state=installed
   with_items:
     - python-setuptools
@@ -12,6 +13,7 @@
 
 
 - name: install supervisor
+  become: yes
   action: yum pkg={{ item }} state=installed
   with_items:
     - supervisor
@@ -21,11 +23,13 @@
     - supervisor
 
 - name: install curl
+  become: yes
   action: yum pkg=curl state=installed
   tags:
     - cow
 
 - name: install cow
+  become: yes
   raw: export COW_INSTALLDIR=/usr/local/bin/; curl -L git.io/cow | bash
   tags:
     - cow
